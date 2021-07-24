@@ -142,5 +142,6 @@ async def on_message(message):
         embed.add_field(name="Medida",value="Para la proxima te vai kickeao",inline=False)
         await message.delete()
         await message.channel.send(embed=embed)
+        await bot.process_commands(message)
         
 bot.run(TOKEN)
