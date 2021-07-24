@@ -72,10 +72,13 @@ async def ban(ctx, user: discord.Member):
 #UNBAN FROM THE SERVER
 @bot.command(help="Unban a user from the server")
 @guild_only()
-async def notban(ctx, id: int):
-    user= await bot.fetch_user(id)
-    await ctx.send(f"{user.mention} has been unbanned from the server")
-    await ctx.guild.unban(user)
+async def notban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split('#')
+    for ban_entry in banned_users:
+        user = ban_entry.banned_users
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
