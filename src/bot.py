@@ -15,13 +15,13 @@ bot=commands.Bot(command_prefix=PREFIX, description='Bot for development')
 @bot.command()
 async def helpme(ctx):
     embed = Embed(title="Help", description="List of commands",timestamp=datetime.datetime.utcnow(), color=discord.Colour.dark_orange())
-    embed.add_field(name=">help", value="Shows this help message", inline=False)
-    embed.add_field(name=">hola", value="Gives a hello message", inline=False)
-    embed.add_field(name=">ok", value="Gives a ok message", inline=False)
-    embed.add_field(name=">info", value="Gives the info of the current server", inline=False)
-    embed.add_field(name=">chstatus [verb]", value="Change the status of the bot", inline=False)
-    embed.add_field(name=">youtube [search]", value="Search youtube, return first result", inline=False)
-    embed.add_field(name=">ytlist [search]", value="Return the fivest result", inline=False)
+    embed.add_field(name=f"{PREFIX}help", value="Shows this help message", inline=False)
+    embed.add_field(name=f"{PREFIX}hola", value="Gives a hello message", inline=False)
+    embed.add_field(name=f"{PREFIX}ok", value="Gives a ok message", inline=False)
+    embed.add_field(name=f"{PREFIX}info", value="Gives the info of the current server", inline=False)
+    embed.add_field(name=f"{PREFIX}chstatus [verb]", value="Change the status of the bot", inline=False)
+    embed.add_field(name=f"{PREFIX}youtube [search]", value="Search youtube, return first result", inline=False)
+    embed.add_field(name=f"{PREFIX}ytlist [search]", value="Return the fivest result", inline=False)
     await ctx.send(embed=embed)
     
 
@@ -130,7 +130,6 @@ async def on_message_delete(message):
 #ANTI UWU METHOD
 @bot.event
 async def on_message(message):
-    
     if "uwu" in message.content or "Uwu" in message.content or "UWU" in message.content or "UwU" in message.content or "uwU" in message.content:
         print(f"{message.author.mention}"+" dijo " + f"{message.content}")
         embed=discord.Embed(
