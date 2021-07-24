@@ -26,16 +26,16 @@ async def helpme(ctx):
     
 
 #responde al saludo
-@bot.command(help="Responde al saludo del usuario",description="Responde al saludo")
+@bot.command(help="Responde al saludo del usuario")
 async def hola(ctx):
     await ctx.send('hello '+ctx.author.mention+' ¿Que tal?')
 
-@bot.command()
+@bot.command(help="Test the bot saying ok")
 async def ok(ctx):
     await ctx.send('okei gugul')
 
 # GET INFO OF THE SERVER
-@bot.command()
+@bot.command(help="Get info of the current server")
 async def info(ctx):
     embed=discord.Embed(
         title=f"{ctx.guild.name}",
@@ -53,7 +53,7 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
-@bot.command()
+@bot.command(help="Change the status of the bot",description="Listening <something>")
 async def chlisten(ctx, *, verb:str):
     embed=discord.Embed(
         title="Cambiando status",
@@ -64,7 +64,7 @@ async def chlisten(ctx, *, verb:str):
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{verb}"))
 
 # CHANGE THE PRESENCE OF THE BOT TO GAMING {GAME}
-@bot.command()
+@bot.command(help="Change the status of the bot",description="Playing <somegame>")
 async def chgame(ctx, *, verb:str):
     embed=discord.Embed(
         title="Cambiando status",
@@ -75,12 +75,8 @@ async def chgame(ctx, *, verb:str):
     game = discord.Game(name=f"{verb}")
     await bot.change_presence(status=discord.Status.idle, activity=game)
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f'pong {ctx.author.mention}')
-
 #youtube commands
-@bot.command(description='Search youtube')
+@bot.command(help='Search on youtube',description="Get the first result of a query")
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
@@ -90,7 +86,7 @@ async def youtube(ctx, *, search):
     await ctx.send('https://www.youtube.com/watch?v=' + search_results[0])
 
 #DEVUELVE LOS 5 PRIMEROS RESULTADOS DE UNA BUSQUEDA EN YOUTUBE
-@bot.command()
+@bot.command(help="Top search on youtube",description="Get the fivest results of a query")
 async def ytlist(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     query_url = 'http://www.youtube.com/results?' + query_string
