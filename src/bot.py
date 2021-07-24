@@ -133,8 +133,8 @@ async def delete_uwu(message):
         embed.add_field(name="Usuario", value=f"{message.author}")
         embed.add_field(name="Mensaje", value=f"{message.content}")
         embed.add_field(name="Medida",value="Para la proxima te vai kickeao",inline=False)
-        await message.delete()
         await message.channel.send(embed=embed)
+        await message.delete()
 
 #LOG DE MENSAJES BORRADOS
 @bot.event
