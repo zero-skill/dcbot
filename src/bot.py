@@ -6,6 +6,8 @@ from urllib import parse, request
 import re
 import os
 
+from discord.ext.commands import guild_only
+
 TOKEN = os.getenv('TOKEN')
 PREFIX = os.getenv('PREFIX')
 
@@ -69,9 +71,11 @@ async def ban(ctx, user: discord.Member):
 
 #UNBAN FROM THE SERVER
 @bot.command(help="Unban a user from the server")
-async def unban(ctx, user: discord.Member):
+@guild_only()
+async def _unban(ctx, id: int):
+    user= await bot.fetch_user(id)
     await ctx.send(f"{user.mention} has been unbanned from the server")
-    await user.unban()
+    await ctx.guild.unban(user)
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
