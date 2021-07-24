@@ -71,7 +71,7 @@ async def ban(ctx, user: discord.Member):
 
 #UNBAN FROM THE SERVER
 @bot.command(help="Unban a user from the server")
-async def notban(ctx, *, member):
+async def notban(ctx, *, user):
     try:
         user = await commands.converter.UserConverter().convert(ctx, user)
     except:
