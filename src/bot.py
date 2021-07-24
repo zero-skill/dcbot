@@ -76,9 +76,10 @@ async def notban(ctx, *, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
     for ban_entry in banned_users:
-        user = ban_entry.banned_users
+        user = ban_entry.user
         if (user.name, user.discriminator) == (member_name, member_discriminator):
             await ctx.guild.unban(user)
+            await ctx.send(f'Unbanned {user.mention}')
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
