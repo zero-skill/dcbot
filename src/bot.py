@@ -5,8 +5,9 @@ import datetime
 from urllib import parse, request
 import re
 from dotenv import dotenv_values
+import os
 
-TOKEN=dotenv_values('.env')['TOKEN']
+TOKEN=os.getenv('TOKEN')
 
 bot=commands.Bot(command_prefix='>', description='Bot for development')
 
