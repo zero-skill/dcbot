@@ -4,7 +4,6 @@ from discord.ext import commands
 import datetime
 from urllib import parse, request
 import re
-from dotenv import dotenv_values
 import os
 
 TOKEN = os.getenv('TOKEN')
@@ -12,6 +11,7 @@ PREFIX = os.getenv('PREFIX')
 
 bot=commands.Bot(command_prefix=PREFIX, description='Bot for development')
 
+#CUSTOM HELP
 @bot.command()
 async def helpme(ctx):
     embed = Embed(title="Help", description="List of commands",timestamp=datetime.datetime.utcnow(), color=discord.Colour.dark_orange())
@@ -24,7 +24,6 @@ async def helpme(ctx):
     embed.add_field(name=f"{PREFIX}ytlist [search]", value="Return the fivest result", inline=False)
     await ctx.send(embed=embed)
     
-
 #responde al saludo
 @bot.command(help="Responde al saludo del usuario")
 async def hola(ctx):
@@ -52,6 +51,10 @@ async def info(ctx):
     """embed.set_thumbnail(url="")"""
     await ctx.send(embed=embed)
 
+# TTS
+@bot.command(help="Text to speech")
+async def tts(ctx, *, text):
+    ctx.send(text, tts=True)
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
 async def chlisten(ctx, *, verb:str):
