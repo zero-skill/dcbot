@@ -57,7 +57,8 @@ async def chlisten(ctx, *, verb:str):
 # CHANGE THE PRESENCE OF THE BOT TO GAMING {GAME}
 @bot.command()
 async def chgame(ctx, *, verb:str):
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{verb}"))
+    game = discord.Game(name=f"{verb}")
+    await bot.change_presence(status=discord.Status.idle, activity=game)
 #youtube commands
 @bot.command()
 async def youtube(ctx, *, search):
