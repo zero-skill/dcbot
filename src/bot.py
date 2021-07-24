@@ -80,7 +80,7 @@ async def ping(ctx):
     await ctx.send(f'pong {ctx.author.mention}')
 
 #youtube commands
-@bot.command()
+@bot.command(description='Search youtube')
 async def youtube(ctx, *, search):
     query_string = parse.urlencode({'search_query': search})
     html_content = request.urlopen('http://www.youtube.com/results?' + query_string)
