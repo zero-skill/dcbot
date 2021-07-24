@@ -72,13 +72,29 @@ async def ban(ctx, user: discord.Member):
 #UNBAN FROM THE SERVER
 @bot.command(help="Unban a user from the server")
 async def notban(ctx, *, member):
-    banned_users = await ctx.guild.bans()
-    member_name, member_discriminator = member.split('#')
-    for ban_entry in banned_users:
-        user = ban_entry.user
-        if (user.name, user.discriminator) == (member_name, member_discriminator):
-            await ctx.guild.unban(user)
-            await ctx.send(f'Unbanned {user.mention}')
+    try:
+        user = await commands.converter.UserConverter().convert(ctx, user)
+    except:
+        await ctx.send("Error: user could not be found!")
+        return
+
+    try:
+        bans = tuple(ban_entry.user for ban_entry in await ctx.guild.bans())
+        if user in bans:
+            await ctx.guild.unban(user, reason="Responsible moderator: "+ str(ctx.author))
+        else:
+            await ctx.send("User not banned!")
+            return
+
+    except discord.Forbidden:
+        await ctx.send("I do not have permission to unban!")
+        return
+
+    except:
+        await ctx.send("Unbanning failed!")
+        return
+
+    await ctx.send(f"Successfully unbanned {user.mention}!")
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
