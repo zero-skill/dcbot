@@ -72,8 +72,7 @@ async def ban(ctx, user: discord.Member):
 async def unban(ctx, user: discord.Member):
     await ctx.send(f"{user.mention} has been unbanned from the server")
     await user.unban()
-    
-@bot.command(help="")
+
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
 async def chlisten(ctx, *, verb:str):
