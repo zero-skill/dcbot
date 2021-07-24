@@ -12,7 +12,7 @@ TOKEN=os.getenv('TOKEN')
 bot=commands.Bot(command_prefix='>', description='Bot for development')
 
 @bot.command()
-async def help1(ctx):
+async def helpme(ctx):
     embed = Embed(title="Help", description="List of commands",timestamp=datetime.datetime.utcnow(), color=discord.Colour.dark_orange())
     embed.add_field(name=">help", value="Shows this help message", inline=False)
     embed.add_field(name=">hola", value="Gives a hello message", inline=False)
@@ -116,6 +116,6 @@ async def ytlist(ctx, *, search):
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game(name="Tratando de no morir"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name="a >command"))
 
 bot.run(TOKEN)
