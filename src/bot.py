@@ -50,11 +50,14 @@ async def info(ctx):
     """embed.set_thumbnail(url="")"""
     await ctx.send(embed=embed)
 
-# CHANGE THE PRESENCE OF THE BOT TO LISTENING {VERB}
+# CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command()
-async def chstatus(ctx, *, verb:str):
+async def chlisten(ctx, *, verb:str):
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{verb}"))
-
+# CHANGE THE PRESENCE OF THE BOT TO GAMING {GAME}
+@bot.command()
+async def chgame(ctx, *, verb:str):
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"{verb}"))
 #youtube commands
 @bot.command()
 async def youtube(ctx, *, search):
