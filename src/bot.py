@@ -54,7 +54,7 @@ async def info(ctx):
 # TTS
 @bot.command(help="Text to speech")
 async def tts(ctx, *, text):
-    await ctx.send("/tts "+f"{text}")
+    await ctx.send(f"{text}",tts=True)
 
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
