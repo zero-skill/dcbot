@@ -7,9 +7,10 @@ import re
 from dotenv import dotenv_values
 import os
 
-TOKEN=os.getenv('TOKEN')
+TOKEN = os.getenv('TOKEN')
+PREFIX = os.getenv('PREFIX')
 
-bot=commands.Bot(command_prefix='>', description='Bot for development')
+bot=commands.Bot(command_prefix=PREFIX, description='Bot for development')
 
 @bot.command()
 async def helpme(ctx):
