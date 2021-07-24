@@ -122,7 +122,7 @@ async def on_ready():
 
 #ANTI UWU METHOD
 @bot.listen('on_message')
-async def delete_uwu(message,ctx):
+async def delete_uwu(message):
     if "uwu" in message.content or "Uwu" in message.content or "UWU" in message.content or "UwU" in message.content or "uwU" in message.content:
         print(f"{message.author.mention}"+" dijo " + f"{message.content}")
         embed=discord.Embed(
@@ -134,7 +134,6 @@ async def delete_uwu(message,ctx):
         embed.add_field(name="Mensaje", value=f"{message.content}")
         embed.add_field(name="Advertencia",value="Para la proxima te vai kickeao",inline=False)
         await message.channel.send(embed=embed)
-        await ctx.send("ALERTA GAMER",tts=True)
         await message.delete()
 
 #LOG DE MENSAJES BORRADOS
