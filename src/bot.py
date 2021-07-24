@@ -71,7 +71,6 @@ async def ban(ctx, user: discord.Member):
 
 #UNBAN FROM THE SERVER
 @bot.command(help="Unban a user from the server")
-@guild_only()
 async def notban(ctx, *, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split('#')
