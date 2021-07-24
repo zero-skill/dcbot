@@ -60,13 +60,20 @@ async def tts(ctx, *, text):
 async def kick(ctx, user: discord.Member):
     await ctx.send(f"{user.mention} has been kicked from the server")
     await user.kick()
-    
+
 #BAN FROM THE SERVER
 @bot.command(help="Ban a user from the server")
 async def ban(ctx, user: discord.Member):
     await ctx.send(f"{user.mention} has been banned from the server")
     await user.ban()
 
+#UNBAN FROM THE SERVER
+@bot.command(help="Unban a user from the server")
+async def unban(ctx, user: discord.Member):
+    await ctx.send(f"{user.mention} has been unbanned from the server")
+    await user.unban()
+    
+@bot.command(help="")
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
 async def chlisten(ctx, *, verb:str):
