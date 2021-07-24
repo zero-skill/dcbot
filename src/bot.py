@@ -117,6 +117,6 @@ async def ytlist(ctx, *, search):
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
-    await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name={PREFIX}+"command"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name=(f"{PREFIX}"+"command")))
 
 bot.run(TOKEN)
