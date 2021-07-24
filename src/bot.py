@@ -54,11 +54,23 @@ async def info(ctx):
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command()
 async def chlisten(ctx, *, verb:str):
+    embed=discord.Embed(
+        title="Cambiando status",
+        description=f"{verb}",
+        timestamp=datetime.datetime.utcnow(),
+        color=discord.Color.green())
+    await ctx.send(embed=embed)
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{verb}"))
 
 # CHANGE THE PRESENCE OF THE BOT TO GAMING {GAME}
 @bot.command()
 async def chgame(ctx, *, verb:str):
+    embed=discord.Embed(
+        title="Cambiando status",
+        description=f"{verb}",
+        timestamp=datetime.datetime.utcnow(),
+        color=discord.Color.green())
+    await ctx.send(embed=embed)
     game = discord.Game(name=f"{verb}")
     await bot.change_presence(status=discord.Status.idle, activity=game)
 
