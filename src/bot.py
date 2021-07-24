@@ -132,7 +132,7 @@ async def delete_uwu(message):
             color=discord.Color.red())
         embed.add_field(name="Usuario", value=f"{message.author}")
         embed.add_field(name="Mensaje", value=f"{message.content}")
-        embed.add_field(name="Advertencia",value="Para la proxima te vai kickeao",inline=False)
+        embed.add_field(name="Advertencia",value="Para la proxima te vai kickeao",inline=False,tts=True)
         await message.channel.send(embed=embed)
         await message.delete()
 
