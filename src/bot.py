@@ -26,9 +26,9 @@ async def helpme(ctx):
     
 
 #responde al saludo
-@bot.command()
+@bot.command(description="Responde al saludo")
 async def hola(ctx):
-    await ctx.send('hello '+ctx.author.mention)
+    await ctx.send('hello '+ctx.author.mention+' ¿Que tal?')
 
 @bot.command()
 async def ok(ctx):
