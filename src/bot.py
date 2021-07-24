@@ -30,7 +30,7 @@ async def helpme(ctx):
 async def hola(ctx):
     await ctx.send('hello '+ctx.author.mention)
 
-@bot.command(pass_context=True)
+@bot.command()
 async def ok(ctx):
     await ctx.send('okei gugul')
 
@@ -113,23 +113,16 @@ async def ytlist(ctx, *, search):
     embed.add_field(name="5==>", value=f"{result_url5}", inline=False)
     await ctx.send(embed=embed)
 
+        
 #Events
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
     await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name=(f"{PREFIX}"+"command")))
 
-
-#LOG DE MENSAJES BORRADOS
-@bot.event
-async def on_message_delete(message):
-    author=message.author
-    content=message.content
-    print(f"Se ha borrado el mensaje de {author} que decia <{content}>")
-
 #ANTI UWU METHOD
-@bot.event
-async def on_message(message):
+@bot.listen('on_message')
+async def delete_uwu(message):
     if "uwu" in message.content or "Uwu" in message.content or "UWU" in message.content or "UwU" in message.content or "uwU" in message.content:
         print(f"{message.author.mention}"+" dijo " + f"{message.content}")
         embed=discord.Embed(
@@ -142,6 +135,12 @@ async def on_message(message):
         embed.add_field(name="Medida",value="Para la proxima te vai kickeao",inline=False)
         await message.delete()
         await message.channel.send(embed=embed)
-        await bot.process_commands(message)
-        
+
+#LOG DE MENSAJES BORRADOS
+@bot.event
+async def on_message_delete(message):
+    author=message.author
+    content=message.content
+    print(f"Se ha borrado el mensaje de {author} que decia <{content}>")
+
 bot.run(TOKEN)
