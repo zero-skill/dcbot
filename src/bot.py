@@ -132,8 +132,9 @@ async def delete_uwu(message):
             color=discord.Color.red())
         embed.add_field(name="Usuario", value=f"{message.author}")
         embed.add_field(name="Mensaje", value=f"{message.content}")
-        embed.add_field(name="Advertencia",value="Para la proxima te vai kickeao",inline=False,tts=True)
+        embed.add_field(name="Advertencia",value="Para la proxima te vai kickeao",inline=False)
         await message.channel.send(embed=embed)
+        await message.channel.send("ALERTA GAMER",tts=True)
         await message.delete()
 
 #LOG DE MENSAJES BORRADOS
