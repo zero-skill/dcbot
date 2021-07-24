@@ -119,4 +119,29 @@ async def on_ready():
     print(f'Logged in as {bot.user.name}')
     await bot.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name=(f"{PREFIX}"+"command")))
 
+
+#LOG DE MENSAJES BORRADOS
+@bot.event
+async def on_message_delete(message):
+    author=message.author
+    content=message.content
+    print(f"Se ha borrado el mensaje de {author} que decia <{content}>")
+
+#ANTI UWU METHOD
+@bot.event
+async def on_message(message):
+    
+    if "uwu" in message.content or "Uwu" in message.content or "UWU" in message.content or "UwU" in message.content or "uwU" in message.content:
+        print(f"{message.author.mention}"+" dijo " + f"{message.content}")
+        embed=discord.Embed(
+            title="ALERTA",
+            description="Dijiste uwu perro ql",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red())
+        embed.add_field(name="Usuario", value=f"{message.author}")
+        embed.add_field(name="Mensaje", value=f"{message.content}")
+        embed.add_field(name="Medida",value="Para la proxima te vai kickeao",inline=False)
+        await message.delete()
+        await message.channel.send(embed=embed)
+        
 bot.run(TOKEN)
