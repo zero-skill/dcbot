@@ -30,7 +30,7 @@ async def helpme(ctx):
 async def hola(ctx):
     await ctx.send('hello '+ctx.author.mention)
 
-@bot.command()
+@bot.command(pass_context=True)
 async def ok(ctx):
     await ctx.send('okei gugul')
 
