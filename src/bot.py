@@ -55,12 +55,18 @@ async def info(ctx):
 @bot.command(help="Text to speech",description="say anything")
 async def tts(ctx, *, text):
     await ctx.send(f"{text}",tts=True)
-#KICK FROM THE Server
+#KICK FROM THE SERVER
 @bot.command(help="Kick a user from the server")
 async def kick(ctx, user: discord.Member):
     await ctx.send(f"{user.mention} has been kicked from the server")
     await user.kick()
     
+#BAN FROM THE SERVER
+@bot.command(help="Ban a user from the server")
+async def ban(ctx, user: discord.Member):
+    await ctx.send(f"{user.mention} has been banned from the server")
+    await user.ban()
+
 # CHANGE THE PRESENCE OF THE BOT TO LISTENING {SONG}
 @bot.command(help="Change the status of the bot",description="Listening <something>")
 async def chlisten(ctx, *, verb:str):
