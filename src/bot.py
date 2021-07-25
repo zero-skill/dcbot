@@ -167,16 +167,16 @@ async def play(ctx,url:str):
         ydl.download([url])
     for file in os.listdir("./"):
         if file.endswith(".mp3"):
-            name = file
-            print(f"Renombrando archivo {name}")
+            name2 = file
+            print(f"Renombrando archivo {name2}")
             os.rename(name, "song.mp3")
             print("Archivo renombrado")
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('Ha terminado', e))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.5
 
-    name_song = name.rsplit("", 2)
-    await ctx.send(f"Reproduciondo {name_song[0]}")
+    name_song = name2.rsplit("", 2)
+    await ctx.send(f"Reproduciendo {name_song[0]}")
 
             
 #youtube commands
