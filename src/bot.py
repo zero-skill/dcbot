@@ -122,7 +122,7 @@ async def chgame(ctx, *, verb:str):
 
 # CONNECT TO AUDIO CHANNEL
 @bot.command(help="Connect to the audio channel")
-async def conectate(ctx):
+async def join(ctx):
     channel= ctx.author.voice.channel
     if not channel:
         await ctx.send(f"{ctx.author.mention} you have to be in a voice channel to use this command")
