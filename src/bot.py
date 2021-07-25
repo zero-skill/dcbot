@@ -152,7 +152,7 @@ async def play(ctx,url:str):
         print("Hay una cancion reproduciendose")
         await ctx.send("There is a song playing")
         return 
-    await ctx.send("Todo listo")
+    await ctx.send("Todo listo ")
     voice = get(bot.voice_clients, guild=ctx.guild)
     youtube_dl_options = {
         'format': 'bestaudio/best',
