@@ -7,6 +7,7 @@ import re
 import os
 
 from discord.ext.commands import guild_only
+from discord.utils import get
 
 TOKEN = os.getenv('TOKEN')
 PREFIX = os.getenv('PREFIX')
@@ -118,6 +119,19 @@ async def chgame(ctx, *, verb:str):
     await ctx.send(embed=embed)
     game = discord.Game(name=f"{verb}")
     await bot.change_presence(status=discord.Status.idle, activity=game)
+
+# CONNECT TO AUDIO CHANNEL
+@bot.command(help="Connect to the audio channel")
+async def conectate(ctx):
+    channel= ctx.author.voice.channel
+    if not channel:
+        await ctx.send(f"{ctx.author.mention} you have to be in a voice channel to use this command")
+        return
+    voice = get(bot.voice_clients, guild=ctx.guild)
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
 
 #youtube commands
 @bot.command(help='Search on youtube',description="Get the first result of a query")
