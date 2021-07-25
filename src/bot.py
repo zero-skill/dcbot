@@ -156,7 +156,7 @@ async def play(ctx,url:str):
     voice = get(bot.voice_clients, guild=ctx.guild)
     youtube_dl_options = {
         'format': 'bestaudio/best',
-        'postprocessor': [{
+        'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
