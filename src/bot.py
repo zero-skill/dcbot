@@ -132,12 +132,14 @@ async def conectate(ctx):
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
+
 # DISCONNECT AUDIO CHANNEL
 @bot.command(help="Disconnect from the audio channel")
 async def desconectate(ctx):
     channel = ctx.author.voice.channel
     voice = get(bot.voice_clients, guild=ctx.guild)
-    await voice.disconnect()
+    await voice.disconnect(channel)
+
 #youtube commands
 @bot.command(help='Search on youtube',description="Get the first result of a query")
 async def youtube(ctx, *, search):
