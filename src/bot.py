@@ -171,7 +171,7 @@ async def play(ctx,url:str):
             print(f"Renombrando archivo {name}")
             os.rename(name, "song.mp3")
             print("Archivo renombrado")
-    voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('Ha terminado', e))
+    voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('Ha terminado la cancion', e))
     voice.source = discord.PCMVolumeTransformer(voice.source)
     voice.source.volume = 0.5
 
