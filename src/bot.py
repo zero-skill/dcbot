@@ -5,7 +5,7 @@ import datetime
 from urllib import parse, request
 import re
 import os
-
+import youtube_dl
 from discord.ext.commands import guild_only
 from discord.utils import get
 
@@ -140,6 +140,45 @@ async def leave(ctx):
     if voice and voice.is_connected():
         await voice.disconnect()
 
+# PLAY A SONG
+@bot.command(help="Play a song from youtube")
+async def play(ctx,url:str):
+    active_song = os.path.isfile("song.mp3")
+    try:
+        if active_song:
+            os.remove("song.mp3")
+            print("La cancion se ha removido")
+    except PermissionError:
+        print("Hay una cancion reproduciendose")
+        await ctx.send("There is a song playing")
+        return 
+    await ctx.send("Todo listo")
+    voice = get(bot.voice_clients, guild=ctx.guild)
+    youtube_dl_options = {
+        'format': 'bestaudio/best',
+        'postprocessor': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(youtube_dl_options) as ydl:
+        print("Descargando cancion")
+        ydl.download([url])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            name = file
+            print(f"Renombrando archivo {name}")
+            os.rename(name, "song.mp3")
+            print("Archivo renombrado")
+    voice.play(discord.FFmpegPCMAudio('song.mp3'), after=lambda e: print('Ha terminado', e))
+    voice.source = discord.PCMVolumeTransformer(voice.source)
+    voice.source.volume = 0.5
+
+    name_song = name.rsplit("", 2)
+    await ctx.send(f"Reproduciondo {name_song[0]}")
+
+            
 #youtube commands
 @bot.command(help='Search on youtube',description="Get the first result of a query")
 async def youtube(ctx, *, search):
